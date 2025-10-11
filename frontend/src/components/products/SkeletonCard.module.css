@@ -1,0 +1,68 @@
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 1rem; /* Space out skeleton elements */
+}
+
+/* Base skeleton style */
+.skeleton {
+  background-color: #e5e7eb; /* A light gray */
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Shimmer animation */
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 150%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -150%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+
+/* Specific skeleton element styles */
+.skeletonImage {
+  width: 100%;
+  height: 200px;
+  border-radius: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.skeletonText {
+  height: 20px;
+  width: 100%;
+}
+
+.skeletonText.short {
+  width: 60%;
+}
+
+.skeletonButton {
+  height: 48px;
+  width: 100%;
+}

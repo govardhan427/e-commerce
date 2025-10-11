@@ -1,0 +1,23 @@
+.scrollToTopButton {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #FFEB3B; /* Accent Yellow */
+  color: #1f2937;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 40;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.scrollToTopButton:hover {
+  background-color: #FDD835; /* Darker Yellow */
+  transform: scale(1.1);
+}

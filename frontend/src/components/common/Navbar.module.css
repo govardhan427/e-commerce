@@ -1,59 +1,205 @@
+/* --- Import new font for the logo --- */
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&display=swap');
+
+/* --- Animations for the Logo with updated colors and increased glow distance --- */
+@keyframes glowingGreen {
+  0%, 100% { text-shadow: 0 0 5px #2E7D32, 0 0 10px #145C1A; }
+  50% { text-shadow: 0 0 12px #43A047, 0 0 18px #2E7D32; }
+}
+
+@keyframes glowingBrown {
+  0%, 100% { text-shadow: 0 0 5px #795548, 0 0 10px #5C4033; }
+  50% { text-shadow: 0 0 12px #8D6E63, 0 0 18px #795548; }
+}
+
+
+/* --- Header & Navbar --- */
 .header {
   background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   position: sticky;
   top: 0;
   z-index: 50;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 
 .navbar {
+  max-width: 1280px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4.5rem; /* 72px */
-  max-width: 1280px;
-  margin: 0 auto;
+  height: 5.5rem; /* Increased height to accommodate the larger logo */
 }
 
-.logo a {
-  font-size: 1.75rem;
-  font-weight: 800;
-  color: #1f2937;
-  text-decoration: none;
-}
-
-.navLinks {
+/* --- Logo Wrapper & Subtext --- */
+.logoWrapper {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
+  position: relative;
 }
 
-.navLinks a {
+.logo {
+  /* Use the new Playwrite font */
+  font-family: 'Playwrite DE SAS', cursive;
+  font-size: 3rem; /* Updated font size */
+  font-weight: 400; /* Adjusted for new font */
+  position: relative;
+  text-decoration: none;
+  line-height: 1; /* Add line-height to control vertical space */
+}
+
+.subtext {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #6b7280;
+  letter-spacing: 0.5px;
+  margin-top: 0.25rem; /* Use a small positive margin for spacing */
+}
+
+/* --- MONK styles with new brown --- */
+.monk {
+  background: linear-gradient(135deg, #795548 30%, #5C4033 100%); /* New Brown Gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.5px #3E2723;
+  animation: glowingBrown 3s ease-in-out infinite;
+}
+
+/* --- FROG styles with new green --- */
+.frog {
+  background: linear-gradient(135deg, #2E7D32 30%, #145C1A 100%); /* New Green Gradient */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0.5px #0a3d0e;
+  animation: glowingGreen 3s ease-in-out infinite;
+}
+
+
+/* --- Desktop Navigation --- */
+.desktopNav {
+  display: none;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+  }
+}
+
+.navLink {
+  position: relative;
+  font-weight: 600;
   color: #4b5563;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out;
   padding: 0.5rem;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
 }
 
-.navLinks a:hover {
-  color: #2563eb;
+.navLink:hover {
+  color: #145C1A; /* Updated hover color */
 }
 
+.activeLink {
+  color: #145C1A; /* Updated active color */
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #145C1A; /* Updated active underline */
+  border-radius: 1px;
+}
+
+/* --- Cart --- */
+.cartContainer {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.cartLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cartBadge {
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #FFEB3B;
+  color: #1f2937;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Buttons --- */
 .logoutButton {
   background-color: transparent;
-  border: 1px solid #d1d5db;
-  color: #374151;
+  border: 2px solid #145C1A; /* Updated border color */
+  color: #145C1A; /* Updated text color */
   padding: 0.5rem 1rem;
   border-radius: 8px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
 }
 
 .logoutButton:hover {
-  background-color: #f3f4f6;
+  background-color: #145C1A; /* Updated hover background */
+  color: #ffffff;
+}
+
+/* --- Mobile Menu --- */
+.mobileMenuButton {
+  display: block;
+  background: none;
+  border: none;
   color: #1f2937;
-  border-color: #9ca3af;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.hamburgerIcon {
+  width: 28px;
+  height: 28px;
+}
+
+@media (min-width: 768px) {
+  .mobileMenuButton {
+    display: none;
+  }
+}
+
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  border-top: 1px solid #e5e7eb;
+  position: absolute;
+  top: 5.5rem; /* Adjusted for new navbar height */
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  gap: 1rem;
+}
+
+.mobileLogout {
+  margin-top: 1rem;
 }

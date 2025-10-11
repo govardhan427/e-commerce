@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import apiClient from '../api/axiosConfig';
 import ProductCard from '../components/products/ProductCard';
 import styles from './HomePage.module.css';
-
+import Hero from '../components/common/Hero.jsx';
 const HomePage = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -46,6 +46,7 @@ const HomePage = () => {
 
   return (
     <div className={styles.homePage}>
+      <Hero />
       <h1 className={styles.title}>Our Products</h1>
       <div className={styles.productGrid}>
         {products.map((product) => (

@@ -4,6 +4,7 @@
   align-items: center;
   min-height: 80vh;
   padding: 2rem;
+  width: 100%;
 }
 
 .loginForm {
@@ -20,7 +21,7 @@
 
 .title {
   font-size: 2rem;
-  font-weight: 700;
+  font-weight: 800;
   color: #1f2937;
   text-align: center;
 }
@@ -39,7 +40,7 @@
 
 .inputGroup label {
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #374151;
 }
 
@@ -53,17 +54,17 @@
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  border-color: #4CAF50; /* MONKFROG Green */
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3);
 }
 
 .loginButton {
-  background-color: #2563eb;
-  color: white;
+  background-color: #FFEB3B; /* MONKFROG Yellow */
+  color: #1f2937;
   border: none;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
@@ -71,6 +72,22 @@
 }
 
 .loginButton:hover {
-  background-color: #1d4ed8;
+  background-color: #FDD835;
   transform: translateY(-2px);
+}
+
+.signupText {
+  text-align: center;
+  margin-top: 1rem;
+  color: #6b7280;
+}
+
+.signupText a {
+  color: #4CAF50; /* MONKFROG Green */
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.signupText a:hover {
+  text-decoration: underline;
 }

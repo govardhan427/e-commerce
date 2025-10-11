@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import apiClient from '../api/axiosConfig';
 import { useCart } from '../context/CartContext'; // Import the useCart hook
 import styles from './ProductDetailPage.module.css';
+import toast from 'react-hot-toast';
 
 const ProductDetailPage = () => {
   const { id } = useParams();
@@ -36,9 +37,9 @@ const ProductDetailPage = () => {
       const numQuantity = parseInt(quantity, 10);
       if (numQuantity > 0) {
         addToCart(product, numQuantity);
-        alert(`${numQuantity} of ${product.name} added to cart!`);
+        toast.success(`${numQuantity} x ${product.name} added to cart!`);
       } else {
-        alert("Please enter a valid quantity.");
+        toast.error("Please enter a valid quantity.");
       }
     }
   };
@@ -55,7 +56,7 @@ const ProductDetailPage = () => {
     return <div className={styles.centered}>Product not found.</div>;
   }
 
-  const imageUrl = product.image || 'https://placehold.co/1200x800?text=No+Image';
+  const imageUrl = product.image_url || 'https://placehold.co/1200x800?text=No+Image';
 
   return (
     <div className={styles.pageContainer}>
@@ -65,7 +66,7 @@ const ProductDetailPage = () => {
         </div>
         <div className={styles.detailsColumn}>
           <h1 className={styles.productName}>{product.name}</h1>
-          <p className={styles.productPrice}>${parseFloat(product.price).toFixed(2)}</p>
+          <p className={styles.productPrice}>₹{parseFloat(product.price).toFixed(2)}</p>
           <p className={styles.productDescription}>{product.description}</p>
           <div className={styles.actions}>
             <input 

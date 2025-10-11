@@ -1,5 +1,7 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AnimatePresence } from 'framer-motion';
 
 // Import Page Components
 import HomePage from './pages/HomePage';
@@ -12,31 +14,44 @@ import ProfilePage from './pages/ProfilePage';
 
 // Import Common Components
 import Navbar from './components/common/Navbar';
-
-// Import Auth Components
-import ProtectedRoute from './auth/ProtectedRoute.jsx'; // <-- FIX: Changed from .js to .jsx
+import MiniCart from './components/common/MiniCart';
+import Footer from './components/common/Footer';
+import ScrollToTopButton from './components/common/ScrollToTopButton'; // 1. Import the new component
+import AnimatedPage from './components/common/AnimatedPage';
+import ProtectedRoute from './auth/ProtectedRoute.jsx';
 
 function App() {
+  const location = useLocation();
+
   return (
-    <div className="App">
+    <div className="App" style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+      <Toaster 
+        position="bottom-right"
+        toastOptions={{
+          success: { style: { background: '#4CAF50', color: 'white' }},
+          error: { style: { background: '#EF4444', color: 'white' }},
+        }}
+      />
       <Navbar />
-      <main className="container mx-auto p-4">
-        <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/product/:id" element={<ProductDetailPage />} />
-          <Route path="/cart" element={<CartPage />} />
+      <MiniCart />
+      <main className="container" style={{ flexGrow: 1 }}>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<AnimatedPage><HomePage /></AnimatedPage>} />
+            <Route path="/login" element={<AnimatedPage><LoginPage /></AnimatedPage>} />
+            <Route path="/register" element={<AnimatedPage><RegisterPage /></AnimatedPage>} />
+            <Route path="/product/:id" element={<AnimatedPage><ProductDetailPage /></AnimatedPage>} />
+            <Route path="/cart" element={<AnimatedPage><CartPage /></AnimatedPage>} />
 
-          {/* Protected Routes */}
-          <Route element={<ProtectedRoute />}>
-            <Route path="/checkout" element={<CheckoutPage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-          </Route>
-
-        </Routes>
+            <Route element={<ProtectedRoute />}>
+              <Route path="/checkout" element={<AnimatedPage><CheckoutPage /></AnimatedPage>} />
+              <Route path="/profile" element={<AnimatedPage><ProfilePage /></AnimatedPage>} />
+            </Route>
+          </Routes>
+        </AnimatePresence>
       </main>
+      <Footer />
+      <ScrollToTopButton /> {/* 2. Add the component here */}
     </div>
   );
 }

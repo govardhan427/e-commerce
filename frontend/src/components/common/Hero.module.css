@@ -1,0 +1,92 @@
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 2rem;
+  background: linear-gradient(135deg, #fdfdfd 0%, #f0fff0 100%);
+  padding: 3rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr 1fr;
+    padding: 4rem 3rem;
+  }
+}
+
+.heroContent {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .heroContent {
+    text-align: left;
+  }
+}
+
+.heroTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #1f2937;
+}
+
+@media (min-width: 768px) {
+    .heroTitle {
+        font-size: 3.5rem;
+    }
+}
+
+.brandName {
+  color: #4CAF50; /* Primary Green */
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  color: #4b5563;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (min-width: 768px) {
+    .heroSubtitle {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+
+.heroButton {
+  background-color: #FFEB3B; /* Accent Yellow */
+  color: #1f2937;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+}
+
+.heroButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.heroImageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroImage {
+  max-width: 100%;
+  height: auto;
+  max-height: 350px;
+}

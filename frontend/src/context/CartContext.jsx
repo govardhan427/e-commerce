@@ -1,17 +1,13 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
-// Create the context
 const CartContext = createContext();
 
-// Create a custom hook to use the cart context
 export const useCart = () => {
   return useContext(CartContext);
 };
 
-// Create the provider component
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(() => {
-    // Load cart from local storage on initial load
     try {
       const localData = localStorage.getItem('cart');
       return localData ? JSON.parse(localData) : [];
@@ -21,26 +17,32 @@ export const CartProvider = ({ children }) => {
     }
   });
 
-  // Save cart to local storage whenever it changes
+  // 1. Add state to manage the mini-cart visibility
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems));
   }, [cartItems]);
+
+  // 2. Add functions to control the cart's visibility
+  const openCart = () => setIsCartOpen(true);
+  const closeCart = () => setIsCartOpen(false);
 
   const addToCart = (product, quantity = 1) => {
     setCartItems(prevItems => {
       const existingItem = prevItems.find(item => item.id === product.id);
       if (existingItem) {
-        // If item exists, update its quantity
         return prevItems.map(item =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
-        // If item is new, add it to the cart
         return [...prevItems, { ...product, quantity }];
       }
     });
+    // 3. Open the cart automatically when an item is added
+    openCart(); 
   };
 
   const removeFromCart = (productId) => {
@@ -63,12 +65,16 @@ export const CartProvider = ({ children }) => {
     setCartItems([]);
   };
 
+  // 4. Expose the new state and functions in the context value
   const value = {
     cartItems,
     addToCart,
     removeFromCart,
     updateQuantity,
     clearCart,
+    isCartOpen,
+    openCart,
+    closeCart,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

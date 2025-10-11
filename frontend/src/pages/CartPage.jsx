@@ -23,10 +23,10 @@ const CartPage = () => {
           <div className={styles.cartItems}>
             {cartItems.map(item => (
               <div key={item.id} className={styles.cartItem}>
-                <img src={item.image || 'https://placehold.co/150x150'} alt={item.name} className={styles.itemImage} />
+                <img src={item.image_url || 'https://placehold.co/150x150'} alt={item.name} className={styles.itemImage} />
                 <div className={styles.itemDetails}>
                   <h2 className={styles.itemName}>{item.name}</h2>
-                  <p className={styles.itemPrice}>${parseFloat(item.price).toFixed(2)}</p>
+                  <p className={styles.itemPrice}>₹{parseFloat(item.price).toFixed(2)}</p>
                 </div>
                 <div className={styles.itemActions}>
                   <input
